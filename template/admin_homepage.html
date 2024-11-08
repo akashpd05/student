@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+    <style>
+       @primary: #2DCC70;
+@body: #2B3A4F;
+@grey: #92A1A2;
+@grey-light: #ECF0F1;
+@blue: #59A4E8;
+@orange: #E54239;
+@purple: #8F40B3;
+@night-blue: #34495E;
+@night-blue-dark: #233342;
+aside {
+    background-color: @night-blue;
+    display: inline-block;
+    height: 100vh;
+    position: fixed;
+    width: 25%;
+    header {
+        box-sizing: border-box;
+        background-color: @primary;
+        height: 80px;
+        padding: 0 15px;
+        img,
+        p {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        img {
+            border-radius: 50%;
+        }
+        p {
+            font-size: 13px;
+            color: white;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+        > div {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+	.profile-picture {
+		height: 55px;
+		width: 55px;
+	}
+}
+
+.side-navigation {
+    font-size: 14px;
+    a {
+        color: @grey;
+        display: block;
+        padding: 15px 25px;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+    i.fa {
+        color: @grey;
+        font-size: 20px;
+        margin-right: 20px;
+    }
+    li {
+        + li {
+            //margin-top: 10px;
+        }
+        &.active,
+        &:hover {
+            a {
+                background-color: @night-blue-dark;
+                color: white;
+            }
+            i {
+                color: @primary;
+            }
+        }
+    }
+}
+
+main {
+    float: right;
+    vertical-align: top;
+    width: 75%;
+}
+
+.main-head {
+    .clear;
+    height: 80px;
+    border-bottom: 1px solid @grey;
+    color: @grey;
+    font-size: 20px;
+    padding: 0 20px;
+    position: relative;
+    .icons {
+        float: left;
+        font-size: 21px;
+        .fa {
+            position: relative;
+            + .fa {
+                margin-left: 20px;
+            }
+        }
+    }
+    .logo {
+        .center;
+        .fa {
+            color: @primary;
+            font-size: 40px;
+        }
+    }
+    .icons,
+    .search {
+        .v-align;
+    }
+}
+
+.search {
+    float: right;
+    input {
+        border: 0;
+        border-bottom: 1px solid transparent;
+        font-size: 13px;
+        margin-right: 10px;
+        outline: none;
+        padding-bottom: 3px;
+        &:hover,
+        &:focus {
+            border-bottom: 1px solid @grey;
+        }
+    }
+}
+
+.user-card {
+    display: inline-block;
+    figure {
+        display: inline-block;
+        img {
+            border-radius: 50%;
+            vertical-align: middle;
+			  width: 150px;
+        }
+    }
+    .name {
+        font-weight: bold;
+        font-size: 24px;
+        text-transform: uppercase;
+    }
+    .user-role,
+    .experience-points {
+        color: @grey;
+        font-size: 16px;
+    }
+    .experience-points .fa {
+        display: inline-block;
+        margin-right: 8px;
+        &:hover {
+            color: @grey;
+            cursor: default;
+        }
+    }
+    .user-info {
+        display: inline-block;
+        margin-left: 15px;
+        vertical-align: middle;
+        span {
+            padding-right: 10px;
+        }
+        .fa-star {
+            font-size: 18px;
+            margin: 0 1px;
+            position: relative;
+            top: -1px;
+            &.on {
+                color: @orange;
+            }
+            &.off {
+                color: @grey;
+            }
+        }
+    }
+    .user-role {
+        margin: 9px 0;
+        a {
+            color: @blue;
+            margin-left: 11px;
+            text-decoration: none;
+        }
+    }
+}
+
+.action-links {
+    float: right;
+    margin-top: 22px;
+    a {
+        border: 1px solid @grey;
+        color: @grey;
+        border-radius: 50%;
+        display: block;
+        padding: 10px;
+        position: relative;
+        &:hover {
+            background-color: @primary;
+            border-color: @primary;
+            .fa {
+                color: white;
+            }
+        }
+        &:before,
+        &:after {
+            left: 50%;
+            opacity: 0;
+            position: absolute;
+            transform: translateX(-50%);
+            transition: all 0.2s ease;
+            visibility: hidden;
+        }
+        &:before {
+            background-color: black;
+            border-radius: 3px;
+            color: white;
+            content: attr(data-title);
+            font-size: 12px;
+            padding: 5px;
+            text-decoration: none;
+            top: -35px;
+            width: 80px;
+        }
+        &:after {
+            border-bottom: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-left: 6px solid transparent;
+            border-top: 6px solid black;
+            content: "";
+            top: -13px;
+        }
+        &:hover {
+            &:before,
+            &:after {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+    li {
+        display: inline-block;
+        text-align: center;
+        + li {
+            margin-left: 15px;
+        }
+    }
+    .fa {
+        display: inline-block;
+        height: 20px;
+        font-size: 19px;
+        width: 20px;
+    }
+}
+
+.category-navigation {
+    border-bottom: 1px solid @grey;
+    padding: 30px 30px 0;
+    a {
+        box-sizing: border-box;
+        color: @body;
+        display: block;
+        font-weight: bold;
+        font-size: 14px;
+        padding: 6px 0 12px;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+    li {
+        display: inline-block;
+        + li {
+            margin-left: 25px;
+        }
+        &.active a,
+        &:hover a {
+            border-bottom: 4px solid @primary;
+        }
+    }
+    &.container {
+        padding-bottom: 0;
+        padding-top: 10px;
+    }
+}
+
+.card {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+    li {
+        box-sizing: border-box;
+        color: @grey;
+        cursor: pointer;
+        font-size: 13px;
+        padding: 15px 16px;
+        position: relative;
+        .icon {
+            position: absolute;
+            left: 10px;
+        }
+        + li {
+            border-top: 1px solid @grey;
+        }
+        &:before {
+            content: "";
+            height: 100%;
+            left: -1px;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            width: 4px;
+        }
+        &:hover {
+            background-color: @grey-light;
+            color: @body;
+            &:before {
+                opacity: 1;
+            }
+        }
+    }
+	.hidden-content {
+		border-top: 1px solid @grey;
+	}
+    .show-more {
+        border-top: 1px solid @grey;
+        color: @body;
+        font-size: 12px;
+        padding: 8px 15px;
+        text-align: right;
+        .fa {
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        &:before {
+            content: none;
+        }
+    }
+    .tabs {
+        position: relative;
+        li {
+            background: transparent;
+            border: 0;
+            border-radius: 3px 3px 0 0;
+            box-sizing: border-box;
+            color: @grey;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 12px;
+            padding: 10px;
+            text-align: center;
+            text-transform: uppercase;
+            width: 50%;
+            span {
+                display: block;
+                font-size: 34px;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            &.active {
+                background-color: white;
+                border: 1px solid @grey;
+                border-bottom: 0;
+            }
+        }
+    }
+    + .card {
+        margin-left: 5%;
+    }
+    &.green {
+        .content li:before {
+            background-color: @primary;
+        }
+        .tabs li.active {
+            color: @primary;
+        }
+    }
+    &.orange {
+        .content li:before {
+            background-color: @orange;
+        }
+        .tabs li.active {
+            color: @orange;
+        }
+    }
+    &.purple {
+        .content li:before {
+            background-color: @purple;
+        }
+        .tabs li.active {
+            color: @purple;
+        }
+    }
+}
+
+.content {
+    background-color: white;
+    border: 1px solid @grey;
+    border-radius: 0 0 3px 3px;
+    box-sizing: border-box;
+    display: none;
+    margin-top: -1px;
+    overflow: hidden;
+    .has-icon li:not(.show-more) {
+        padding: 15px 16px 15px 43px;
+    }
+    .fa {
+        font-size: 14px;
+        line-height: 0;
+        padding-right: 3px;
+    }
+    &.visible {
+        display: block;
+    }
+}
+
+.card.card-full {
+    margin-left: 0;
+    margin-top: 5%;
+    width: 100%;
+    .content {
+        display: inline-block;
+        height: 280px;
+        margin-top: 0;
+        overflow: visible;
+        &.activity {
+            border-radius: 0 0 3px 0;
+        }
+        &.experience-graphs {
+            border-right: 0;
+            border-radius: 0 0 0 3px;
+        }
+    }
+}
+
+.graph {
+    bottom: 0;
+    height: 100%;
+    left: 10px;
+    position: absolute;
+    text-align: center;
+    width: 25px;
+    .bar {
+        font-size: 10px;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+    }
+    .value {
+        background: @primary;
+        bottom: 0;
+        display: inline-block;
+        height: 40.6px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+    &:before {
+        background-color: #000;
+        content: "";
+        bottom: 0;
+        position: absolute;
+        width: 50px;
+    }
+}
+
+.container {
+    background-color: @grey-light;
+    padding: 30px;
+
+    &.user {
+        background-color: white;
+    }
+}
+
+// global styles
+h3 {
+    color: @grey;
+    font-size: 15px;
+    margin: 0 0 15px;
+}
+
+.fa:not(.fa-star):hover {
+    color: @primary;
+    cursor: pointer;
+}
+
+.number-alert {
+    background-color: @orange;
+    border-radius: 50%;
+    box-sizing: border-box;
+    color: white;
+    display: inline-block;
+    font-family: "Tahoma";
+    font-size: 9px;
+    height: 15px;
+    padding: 3px 0;
+    position: absolute;
+    right: -25%;
+    text-align: center;
+    top: -25%;
+    width: 15px;
+}
+
+body {
+    color: #202020;
+    font-family: "Helvetica", "Open Sans", "Arial";
+    font-size: 0;
+}
+
+footer {
+    .clear;
+    bottom: 0;
+    padding: 0 15px;
+    position: fixed;
+    right: 0;
+    text-align: right;
+    width: 100%;
+    .item {
+        display: inline-block;
+        color: @body;
+        font-size: 10px;
+        text-decoration: none;
+        vertical-align: middle;
+        + .item {
+            margin-left: 10px;
+        }
+    }
+    .link {
+        width: 32px;
+    }
+    img {
+        width: 100%;
+    }
+}
+
+ul {
+    padding-left: 0;
+}
+
+li {
+    list-style: none;
+}
+
+p {
+    margin: 0;
+}
+
+// mixins
+.center() {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.clear() {
+    *zoom: 1;
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.v-align (@position: relative) {
+    position: @position;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.h-align (@position: relative) {
+    left: 50%;
+    position: @position;
+    transform: translateX(-50%);
+}
+
+    </style>
+</head>
+<body>
+<aside>
+  <header>
+    <div><img class="profile-picture" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_10.png"/>
+      <p>Jane Doe</p>
+    </div>
+  </header>
+  <nav class="side-navigation">
+    <ul>
+      <li class="active"><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li>
+        <a href="/courses/"><i class="fa fa-ship"></i>Courses</a>
+
+      </li>
+      <li><a href="/teachers"><i class="fa fa-users"></i>Teachers</a></li>
+      <li><a href="#"><i class="fa fa-comments"></i>Comments</a></li>
+      <li><a href="#"><i class="fa fa-area-chart"></i>Stats</a></li>
+    </ul>
+  </nav>
+</aside>
+<main>
+  <header class="main-head">
+    <div class="icons"><i class="fa fa-user-md"></i><i class="fa fa-comments-o"></i><i class="fa fa-bell-o"><span class="number-alert">3</span></i></div>
+    <div class="logo"><i class="fa fa-rocket"></i></div>
+    <div class="search">
+      <input type="text" name="search" placeholder="Type here to search..." autocomplete="off"/><i class="fa fa-search"></i>
+    </div>
+  </header>
+  <div class="container user">
+    <div class="user-card">
+      <figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_10.png"/></figure>
+      <div class="user-info">
+        <div class="name"> <span>Jane Doe</span><i class="fa fa-star on"></i><i class="fa fa-star on"></i><i class="fa fa-star on"></i><i class="fa fa-star on"></i><i class="fa fa-star off"></i></div>
+        <div class="user-role">
+          Student &nbsp; &#8226;<a href="#">Learn more</a>
+        </div>
+        <div class="experience-points"><i class="fa fa-coffee"></i>8,977 exp</div>
+      </div>
+    </div>
+    <div class="action-links">
+      <ul>
+        <li><a href="#" data-title="Edit profile"><i class="fa fa-pencil"></i></a></li>
+        <li><a href="#" data-title="Sign out"><i class="fa fa-sign-out"></i></a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- main content-->
+  <div class="wrapper">
+    <ul class="category-navigation">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Admins</a></li>
+      <li><a href="#">Knowledge board</a></li>
+      <li><a href="#">Forum</a></li>
+      <li><a href="#">Q&A</a></li>
+    </ul>
+    <div class="container">
+      <div class="card orange">
+        <ul class="tabs">
+          <li class="active" data-tab="1"><span>32</span>Tabs</li>
+          <li data-tab="2"><span>4</span>Tabs</li>
+        </ul>
+        <div class="content visible" data-content="1">
+          <ul>
+            <li>Tab content 0</li>
+            <li>Tab content 1</li>
+            <li>Tab content 2</li>
+            <li>Tab content 3</li>
+            <li>Tab content 4</li>
+            <li>Tab content 5</li>
+            <ul class="hidden-content">
+              <li>More content</li>
+              <li>More content</li>
+              <li>More content</li>
+              <li>More content</li>
+            </ul>
+            <li class="show-more" data-less="Show less" data-more="Show more"> <span>Show more</span><i class="fa fa-chevron-down"></i></li>
+          </ul>
+        </div>
+        <div class="content" data-content="2">
+          <ul>
+            <li>Tab content 5</li>
+            <li>Tab content 4</li>
+            <li>Tab content 3</li>
+            <li>Tab content 2</li>
+            <li>Tab content 1</li>
+            <li>Tab content 0</li>
+            <ul class="hidden-content">
+              <li>More content</li>
+              <li>More content</li>
+              <li>More content</li>
+              <li>More content</li>
+            </ul>
+            <li class="show-more" data-less="Show less" data-more="Show more"> <span>Show more</span><i class="fa fa-chevron-down"></i></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card purple">
+        <ul class="tabs">
+          <li class="active" data-tab="3"><span>21</span>Tabs</li>
+          <li data-tab="4"><span>4</span>Tabs</li>
+        </ul>
+        <div class="content visible" data-content="3">
+          <ul class="has-icon">
+            <li>
+              <div class="icon"><i class="fa fa-comment-o"></i><span>11</span></div>Tab content 0
+            </li>
+            <li>
+              <div class="icon"><i class="fa fa-comment-o"></i><span>1</span></div>Tab content 0
+            </li>
+            <li>
+              <div class="icon"><i class="fa fa-comment-o"></i><span>9</span></div>Tab content 0
+            </li>
+            <li>
+              <div class="icon"><i class="fa fa-comment-o"><

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Payment Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .payment-options {
+            margin: 20px 0;
+        }
+        .payment-options button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .online {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .offline {
+            background-color: #f44336;
+            color: white;
+        }
+        .summary-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #2196F3;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Course Payment Options</h1>
+
+    <div class="payment-options">
+        <form id="pay" action="/payment_handler/" method="post">{% csrf_token %}
+            <input type="hidden" name="payment_id">
+            <input type="hidden" name="amount" value="{{razorpay_amount}}">
+                    <button class="online" type="button" id="submit_btn">Pay Online</button>
+
+        </form>
+        <a href="/" class="offline">Pay Offline</a>
+    </div>
+
+    <a href="#summary" class="summary-btn" onclick="viewSummary()">View Course Summary</a>
+
+
+    <div id="summary" style="display: none; margin-top: 20px;">
+        <h2>Course Summary</h2>
+        <p><strong>Name: </strong>{{a.name}}</p>
+        <p><strong>Email: </strong>{{a.email}}</p>
+        <p><strong>phone: </strong>{{a.phone}}</p>
+        <p><strong>Course Name: </strong>{{a.course.Course_name}}</p>
+        <p><strong>Gender: </strong>{{a.gender}}</p>
+        <p><strong>Address: </strong>{{a.address}}</p>
+
+
+
+    </div>
+
+</div>
+
+<script>
+    function viewSummary() {
+        document.getElementById('summary').style.display = 'block';
+    }
+</script>
+<!-- Razorpay's Javascript code. -->
+
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+
+        <script>
+            var options = {
+                "key": "{{ razorpay_merchant_key }}", // Enter the Key ID generated from the Dashboard
+                "amount": "{{ razorpay_amount }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                "currency": "{{ currency }}",
+                "name": "test",
+                "description": "Test Transaction",
+                "image": "https://example.com/your_logo",
+                "order_id": "{{razorpay_order_id}}", //This is a sample Order ID. Pass the id obtained in the response of Step 1
+                "handler": function (response){
+                    $('#pay input[name=payment_id]').val(response.razorpay_payment_id)
+                    document.getElementById('pay').submit();
+                },
+                "prefill": {
+                    "name": "",
+                    "email": "vineethamonichan@gmail.com",
+                    "contact": "7902955231"
+                },
+                "notes": {
+                    "address": "Razorpay Corporate Office"
+                },
+                "theme": {
+                    "color": "rgb(104,222,238)"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.on('payment.failed', function (response){
+                $('#myModal').modal();
+            });
+            document.getElementById('submit_btn').onclick = function(e){
+
+                rzp1.open();
+                e.preventDefault();
+            }
+        </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="zxx" class="no-js">
+
+<head>
+  <!-- Mobile Specific Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static 'img/fav.png' %}" />
+  <!-- Author Meta -->
+  <meta name="author" content="colorlib" />
+  <!-- Meta Description -->
+  <meta name="description" content="" />
+  <!-- Meta Keyword -->
+  <meta name="keywords" content="" />
+  <!-- meta character set -->
+  <meta charset="UTF-8" />
+  <!-- Site Title -->
+  <title>About</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,400i,500,700" rel="stylesheet" />
+  <!--
+      CSS
+      =============================================
+    -->
+<link rel="stylesheet" href="{% static 'css/linearicons.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+	<link rel="stylesheet" href="{% static 'css/hexagons.min.css' %}" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css" />
+	<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .course-box {
+            border: 2px solid #28a745; /* Green border */
+            background-color: #e8f5e9; /* Light green background */
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .course-box h3 {
+            color: #28a745;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .course-box button {
+            background-color: #007bff; /* Blue button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .course-box button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+  <!-- ================ Start Header Area ================= -->
+  <header class="default-header">
+    <nav class="navbar navbar-expand-lg  navbar-light">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="static/img/logo.png" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="lnr lnr-menu"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/course_details">Courses</a></li>
+             <li><a href="/teacher">Teacher</a></li>
+            <!-- Dropdown -->
+            <li class="dropdown">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                Pages
+              </a>
+              <div class="dropdown-menu">
+              <a class="dropdown-item" href="/sign_in">sign IN</a>
+                <a class="dropdown-item" href="/sign_up">sign UP</a>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                Blog
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/blog_page">Blog page </a>
+
+              </div>
+            </li>
+            <li><a href="/contacts">Contacts</a></li>
+
+            <li>
+              <button class="search">
+                <span class="lnr lnr-magnifier" id="search"></span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </header>
+  <!-- ================ End Header Area ================= -->
+
+  <!-- ================ start banner Area ================= -->
+  <section class="home-banner-area">
+    <div class="container">
+      <div class="row justify-content-center fullscreen align-items-center">
+        <div class="col-lg-5 col-md-8 home-banner-left">
+          <h1 class="text-white">
+            Take the first step to learn with us <br />
+
+          </h1>
+          <p class="mx-auto text-white  mt-20 mb-40">
+            In the history of modern astronomy, there is probably no one
+            greater leap forward than the building and launch of the space
+            telescope known as the Hubble.
+          </p>
+        </div>
+        <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
+          <img class="img-fluid" src="static/img/header-img.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+<body>
+
+    <h1>Available Courses</h1>
+
+    <div class="container">
+        {% for i in a %}
+        <div class="course-box">
+            <h3>Course {{forloop.counter}}</h3>
+            <p>Course:{{i.Course_name}}</p>
+            <p>Duration:{{ i.Duration }}</p>
+            <p>Fee:{{ i.fees }}</p>
+            <p>Instructor:{{ i.Instructor }}</p>
+            <a href="/application_form/{{i.id}}">Enroll Now</a>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>
+
+
+

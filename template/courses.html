@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Course Details</h1>
+    <div class="button-container">
+
+        <button type="button" onclick="location.href='/add_courses/'">Add Courses</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Duration</th>
+                <th>Fees</th>
+                <th>Instructor</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <!-- Templating code to loop through courses -->
+            {% for i in a %}
+            <tr>
+                <td>{{ i.Course_name }}</td>
+                <td>{{ i.Duration }}</td>
+                <td>{{ i.fees }}</td>
+                <td>{{ i.Instructor }}</td>
+                <td>{{ i.description }}</td>
+
+                 <td><a href="/edit_courses/{{i.id}}">edit</a></td>
+                <td><a href="/delete_courses/{{i.id}}">delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
